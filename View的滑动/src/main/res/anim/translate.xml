@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--加上android:fillAfter="true",就会让控件动画播放完毕后停留在最后的位置，而不会回到原点-->
+<!--需要注意，动画播放完如果通过xml里的fillAfter停留到最后的位置，只是视图作用，实际参数位置不会变，触摸和点击还是要点原来的点，所以最好还是让视图回来-->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillAfter="true">
+    <translate
+        android:duration="3000"
+        android:fromXDelta="0"
+        android:toXDelta="300" />
+</set>

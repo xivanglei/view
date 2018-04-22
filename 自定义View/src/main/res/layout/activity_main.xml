@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="xl.gcs.com.view.MainActivity">
+    <xl.gcs.com.view.TitleBar
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title_bg="@android:color/holo_orange_dark"
+        app:title_text_color="@android:color/holo_blue_dark">
+
+    </xl.gcs.com.view.TitleBar>
+
+    <xl.gcs.com.view.InvalidTextView
+        android:id="@+id/iv_text"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_blue_light"
+        android:gravity="center"
+        android:text="dfdfdfdfdf"
+        android:textSize="16sp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_centerHorizontal="true"
+        />
+
+    <xl.gcs.com.view.RectView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rv_rect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_text"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        app:rect_color="@android:color/holo_blue_light"
+        />
+
+</RelativeLayout>

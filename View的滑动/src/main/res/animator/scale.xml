@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--2、<objectAnimator>-->
+    <!--它指定一个对象的属性动画，表示一个ObjectAnimator对象。-->
+    <!--它具有如下属性：-->
+    <!--android:propertyName-->
+    <!--属性名称，例如一个view对象的”alpha”和”backgroundColor”,这里最好不要设置backgroundColor，会抖，java里面有介绍办法可以不抖，可以参考下-->
+    <!--android:valueFrom-->
+    <!--变化开始值-->
+    <!--android:valueTo-->
+    <!--变化结束值-->
+    <!--android:valueType-->
+    <!--变化值类型-->
+    <!--它有两种值：intType和floatType，第二种为默认值-->
+    <!--android:duration-->
+    <!--持续时间-->
+    <!--android:startOffset-->
+    <!--动画开始延迟时间-->
+    <!--android:repeatCount-->
+    <!--重复次数，-1表示无限重复-->
+    <!--android:repeatMode-->
+    <!--重复模式，前提是android:repeatCount为-1-->
+    <!--它有两种值：”reverse”和”repeat”，第一个表示反向重复，第二个为顺序重复。-->
+<objectAnimator
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:propertyName="alpha"
+    android:valueFrom="0"
+    android:valueTo="1"
+    android:valueType="floatType"
+    android:duration="3000"
+    android:repeatCount="2">
+</objectAnimator>

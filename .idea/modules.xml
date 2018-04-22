@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/12 自定义ViewGroup/12 自定义ViewGroup.iml" filepath="$PROJECT_DIR$/12 自定义ViewGroup/12 自定义ViewGroup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3种notification 通知/3种notification 通知.iml" filepath="$PROJECT_DIR$/3种notification 通知/3种notification 通知.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CardView 卡片控件/CardView 卡片控件.iml" filepath="$PROJECT_DIR$/CardView 卡片控件/CardView 卡片控件.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PermissionsDispatcher框架 权限处理/PermissionsDispatcher框架 权限处理.iml" filepath="$PROJECT_DIR$/PermissionsDispatcher框架 权限处理/PermissionsDispatcher框架 权限处理.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecyclerView/RecyclerView.iml" filepath="$PROJECT_DIR$/RecyclerView/RecyclerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Snackbar和TextInputLayout和FloatingActionButto/Snackbar和TextInputLayout和FloatingActionButto.iml" filepath="$PROJECT_DIR$/Snackbar和TextInputLayout和FloatingActionButto/Snackbar和TextInputLayout和FloatingActionButto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TabLayout 选项卡动态滑动效果/TabLayout 选项卡动态滑动效果.iml" filepath="$PROJECT_DIR$/TabLayout 选项卡动态滑动效果/TabLayout 选项卡动态滑动效果.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Toolbar标题栏 和 Palette提取颜色/Toolbar标题栏 和 Palette提取颜色.iml" filepath="$PROJECT_DIR$/Toolbar标题栏 和 Palette提取颜色/Toolbar标题栏 和 Palette提取颜色.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ViewPager各种功能/ViewPager各种功能.iml" filepath="$PROJECT_DIR$/ViewPager各种功能/ViewPager各种功能.iml" />
+      <module fileurl="file://$PROJECT_DIR$/View的滑动/View的滑动.iml" filepath="$PROJECT_DIR$/View的滑动/View的滑动.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WheelView的各种组合用法/WheelView的各种组合用法.iml" filepath="$PROJECT_DIR$/WheelView的各种组合用法/WheelView的各种组合用法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wangshu.iml" filepath="$PROJECT_DIR$/wangshu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/自定义View/自定义View.iml" filepath="$PROJECT_DIR$/自定义View/自定义View.iml" />
+    </modules>
+  </component>
+</project>

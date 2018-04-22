@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <!--指示器的颜色-->
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <!--指示器（下面划线）的高度，不要就设为0-->
+        <item name="tabIndicatorHeight">2dp</item>
+        <!--每项左边的间距-->
+        <item name="tabPaddingStart">0dp</item>
+        <!--每项右边的间距-->
+        <item name="tabPaddingEnd">0dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <!--标题颜色，使用下面的自定义-->
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <!--如果要用图标就要把下面改成false-->
+        <item name="textAllCaps">false</item>
+    </style>
+
+</resources>

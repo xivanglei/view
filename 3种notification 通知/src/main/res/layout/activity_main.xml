@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_nomal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="普通通知" />
+
+    <TextView
+        android:id="@+id/tv_fold"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="折叠式通知" />
+
+    <TextView
+        android:id="@+id/tv_hang"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="悬挂式通知" />
+
+    <!--android:button="@null" 取消圈圈-->
+    <!--android:checked="true"  默认选中一项-->
+    <!--select自己写一个里面用<item android:state_checked="false" android:color="#999999"/>-->
+    <!--android:textColor="@drawable/tv_color_on33333_off999999"-->
+
+    <xl.gcs.com.mynotification.MyRadioGroup
+        android:id="@+id/rg_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/rb_public"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="public"
+                android:textColor="@drawable/bg_radio_group"
+                android:checked="true"
+                android:button="@null"
+                android:background="@mipmap/ic_launcher"
+                />
+
+            <RadioButton
+                android:id="@+id/rb_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="private"
+                android:textColor="@drawable/bg_radio_group"/>
+
+            <RadioButton
+                android:id="@+id/rb_secret"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="secret"
+                android:textColor="@drawable/bg_radio_group"
+                />
+        </LinearLayout>
+    </xl.gcs.com.mynotification.MyRadioGroup>
+</LinearLayout>
+

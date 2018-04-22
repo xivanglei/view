@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="400dp"
+        android:layout_height="400dp">
+
+        <xl.gcs.com.view.CustomView
+            android:id="@+id/customview"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="50dp"
+            android:background="@android:color/holo_red_light" />
+
+        <xl.gcs.com.view.CustomView
+            android:id="@+id/customview2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="50dp"
+            android:layout_gravity="bottom"
+            android:background="@android:color/holo_red_light" />
+
+    </FrameLayout>
+</LinearLayout>

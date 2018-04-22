@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <!--1、<set>-->
+
+    <!--它是一个集合，包含了其他的元素，包括, 和其他的元素，它代表的就是一个AnimatorSet对象。-->
+
+    <!--它具有如下属性：-->
+
+    <!--android:ordering-->
+    <!--指定集合中动画播放的顺序。-->
+
+    <!--它具有两种类型的值：sequentially和together。第一个表示顺序执行，第二个表示同时执行。默认是together。-->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <set android:ordering="sequentially">
+        <set>
+            <objectAnimator
+                android:propertyName="translationX"
+                android:duration="1500"
+                android:valueFrom="0"
+                android:valueTo="400" />
+            <objectAnimator
+                android:propertyName="translationY"
+                android:duration="1500"
+                android:valueFrom="0"
+                android:valueTo="300" />
+        </set>
+        <objectAnimator
+            android:propertyName="alpha"
+            android:duration="1500"
+            android:valueFrom="0"
+            android:valueTo="1f"
+            />
+    </set>
+</set>

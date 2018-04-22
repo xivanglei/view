@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ToolbarAndPalette</string>
+    <string name="drawer_open">open点滴</string>
+    <string name="drawer_close">close</string>
+</resources>
