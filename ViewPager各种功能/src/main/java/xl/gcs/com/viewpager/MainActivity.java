@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 //                    layoutParams.rightMargin = 150;
                 }
                 //左边间距除了第一个都要设置，没间距就贴紧了，很难看
-                layoutParams.leftMargin = 10;
+                layoutParams.leftMargin = 100;
             }
             mLinearLayout.addView(view, layoutParams);
         }

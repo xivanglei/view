@@ -3,9 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/12 自定义ViewGroup/12 自定义ViewGroup.iml" filepath="$PROJECT_DIR$/12 自定义ViewGroup/12 自定义ViewGroup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/14 WebView基本使用/14 WebView基本使用.iml" filepath="$PROJECT_DIR$/14 WebView基本使用/14 WebView基本使用.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15 画图Paint_Canvas_PathBitmap_BitmapFactory/15 画图Paint_Canvas_PathBitmap_BitmapFactory.iml" filepath="$PROJECT_DIR$/15 画图Paint_Canvas_PathBitmap_BitmapFactory/15 画图Paint_Canvas_PathBitmap_BitmapFactory.iml" />
       <module fileurl="file://$PROJECT_DIR$/3种notification 通知/3种notification 通知.iml" filepath="$PROJECT_DIR$/3种notification 通知/3种notification 通知.iml" />
       <module fileurl="file://$PROJECT_DIR$/CardView 卡片控件/CardView 卡片控件.iml" filepath="$PROJECT_DIR$/CardView 卡片控件/CardView 卡片控件.iml" />
       <module fileurl="file://$PROJECT_DIR$/PermissionsDispatcher框架 权限处理/PermissionsDispatcher框架 权限处理.iml" filepath="$PROJECT_DIR$/PermissionsDispatcher框架 权限处理/PermissionsDispatcher框架 权限处理.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PopupWindow详解/PopupWindow详解.iml" filepath="$PROJECT_DIR$/PopupWindow详解/PopupWindow详解.iml" />
       <module fileurl="file://$PROJECT_DIR$/RecyclerView/RecyclerView.iml" filepath="$PROJECT_DIR$/RecyclerView/RecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/Snackbar和TextInputLayout和FloatingActionButto/Snackbar和TextInputLayout和FloatingActionButto.iml" filepath="$PROJECT_DIR$/Snackbar和TextInputLayout和FloatingActionButto/Snackbar和TextInputLayout和FloatingActionButto.iml" />
       <module fileurl="file://$PROJECT_DIR$/TabLayout 选项卡动态滑动效果/TabLayout 选项卡动态滑动效果.iml" filepath="$PROJECT_DIR$/TabLayout 选项卡动态滑动效果/TabLayout 选项卡动态滑动效果.iml" />

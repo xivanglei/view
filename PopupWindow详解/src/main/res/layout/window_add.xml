@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#9929231d">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="200dp"
+        android:layout_height="250dp">
+
+        <FrameLayout
+            android:id="@+id/fl_add_sell_house"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加售房"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:textColor="@android:color/white"
+                android:layout_gravity="right|center"
+                />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_add_rent_house"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加租房"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:textColor="@android:color/white"
+                android:layout_gravity="right|center"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_add_buyer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加买客"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:textColor="@android:color/white"
+                android:layout_gravity="right|center"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_add_seller"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加卖客"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:textColor="@android:color/white"
+                android:layout_gravity="right|center"/>
+
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>
