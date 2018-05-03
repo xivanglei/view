@@ -75,6 +75,7 @@ public class CollapsingToolbarActivity extends AppCompatActivity {
         return true;
     }
 
+    
     /*
     下面介绍Fragment里面展现toolbar菜单的方法，折叠标题栏在fragment里能用
 

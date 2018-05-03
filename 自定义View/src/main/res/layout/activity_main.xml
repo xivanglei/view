@@ -30,12 +30,35 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/rv_rect"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/iv_text"
-        android:layout_marginTop="50dp"
+
         android:layout_centerHorizontal="true"
         android:padding="10dp"
         app:rect_color="@android:color/holo_blue_light"
         />
+
+    <!--switch不太好适配，可以设置自定义track(轨迹)和thumb(球)，-->
+    <!--但自定义不能让轨道宽度小于球-->
+    <!--也可以更改主题样式，能改变球和轨道颜色-->
+    <Switch
+        android:id="@+id/sw_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="90dp"
+        android:checked="true"
+        android:track="@drawable/track"
+        android:thumb="@drawable/thumb"
+        android:theme="@style/mySwitch"
+        />
+
+    <xl.gcs.com.view.SwitchIndicator
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

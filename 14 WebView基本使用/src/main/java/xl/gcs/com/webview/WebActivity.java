@@ -100,6 +100,10 @@ public class WebActivity extends AppCompatActivity{
         //禁用放缩
         webSettings.setDisplayZoomControls(false);
         webSettings.setBuiltInZoomControls(false);
+
+        webSettings.setSaveFormData(true);// 保存表单数据
+        webSettings.setGeolocationEnabled(true);// 启用地理定位
+        webSettings.setSupportMultipleWindows(true);// 设置WebView是否支持多屏窗口，默认false，不支持。
         //禁用文字缩放
         webSettings.setTextZoom(100);
         //10M缓存，api 18后，系统自动管理。

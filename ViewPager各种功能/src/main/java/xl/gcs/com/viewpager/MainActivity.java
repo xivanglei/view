@@ -15,10 +15,13 @@ import android.widget.LinearLayout;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import xl.gcs.com.viewpager.base.BaseActivity;
+import xl.gcs.com.viewpager.base.BaseHttpActivity;
 
 /*
 ViewPager里面的最长滚动时间， MAX_SETTLE_DURATION，可以随便改
@@ -26,7 +29,7 @@ ViewPager里面的最长滚动时间， MAX_SETTLE_DURATION，可以随便改
 ViewPager需要复制过去，里面改了系统的几个参数
 PagerAdapter如果要无限，就要有不同的设置，而且Fragment估计不行，只是轮播的话正常设置就好
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseHttpActivity {
 
     //git 学习中
     @BindView(R.id.main_viewpager)
@@ -42,12 +45,16 @@ public class MainActivity extends AppCompatActivity {
     private int[] mPicPages = new int[]{R.drawable.ic_launcher_background, R.mipmap.ic_launcher, R.drawable.ic_launcher_foreground};
     //初始化ImageHandler，自定义Handler主要是希望传入MainActivity的弱引用，具体作用下面有解释，为什么用这个，还不清楚
     //如果不用这个弱引用，用系统的Handler就好了
-    private ImageHandler handler = new ImageHandler(new WeakReference<MainActivity>(this));
+    private ViewPager.ImageHandler handler = new ViewPager.ImageHandler(new WeakReference<MainActivity>(this));
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutById() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
 
@@ -58,20 +65,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-        setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
         }
-        bindID();
         getData();
-        initAdapter();
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("page", "0");
+        postHttp("http://interfacev2.56lvyou.com/index.php/Api/Index/canvas", hashMap);
         mLinearLayout.getChildAt(0).setEnabled(true);
-
-    }
-
-    private void bindID() {
-        ButterKnife.bind(this);
     }
 
     private void initAdapter() {
@@ -80,15 +82,15 @@ public class MainActivity extends AppCompatActivity {
         //加动画，自定义的
 //        mViewPager.setPageTransformer(true, new DepthPageTransformer());
         //设置滚动事件，最多两秒
-        handler.setDuration(2000);
+//        handler.setDuration(2000);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             //配合Adapter的currentItem字段进行设置。
             @Override
             public void onPageSelected(int arg0) {
-                handler.sendMessage(Message.obtain(handler, ImageHandler.MSG_PAGE_CHANGED, arg0, 0));
+                handler.sendMessage(Message.obtain(handler, ViewPager.ImageHandler.MSG_PAGE_CHANGED, arg0, 0));
                 int page = arg0 % mImageList.size();
-                //原来的显示项设为不可点击或不可触摸
+                //原来的显示项设为不选中
                 mLinearLayout.getChildAt(mNum).setSelected(false);
                 //现在选的这个激活
                 mLinearLayout.getChildAt(page).setSelected(true);
@@ -106,12 +108,12 @@ public class MainActivity extends AppCompatActivity {
                     //监听在拖拽中的状态
                     case ViewPager.SCROLL_STATE_DRAGGING:
                         //发送消息，让他暂停轮播
-                        handler.sendEmptyMessage(ImageHandler.MSG_KEEP_SILENT);
+                        handler.sendEmptyMessage(ViewPager.ImageHandler.MSG_KEEP_SILENT);
                         break;
                     //监听没有拖拽的动作
                     case ViewPager.SCROLL_STATE_IDLE:
                         //发送消息可以继续轮播了，应该就是这里跟发送消息重复了，所以下面需要移除先
-                        handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE, ImageHandler.MSG_DELAY);
+                        handler.sendEmptyMessageDelayed(ViewPager.ImageHandler.MSG_UPDATE_IMAGE, ViewPager.ImageHandler.MSG_DELAY);
                         break;
                     default:
                         break;
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         });
         mViewPager.setCurrentItem(Integer.MAX_VALUE / 2);//默认在中间，使用户看不到边界，因为第一页有边界，就不能左移了
         //开始轮播效果
-        handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE, ImageHandler.MSG_DELAY);
+//        handler.sendEmptyMessageDelayed(ViewPager.ImageHandler.MSG_UPDATE_IMAGE, ViewPager.ImageHandler.MSG_DELAY);
     }
 
     private void getData() {
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             //这条在无限轮播里暂时没用
 //            view.setSelected(false);
             //设置指示器宽高和Margin等的参数
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(21, 2);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(42, 4);
             //如果不是第一个view
             if (pic != mPicPages[0]) {
                 if (pic == mPicPages[mPicPages.length - 1]) {
@@ -147,98 +149,20 @@ public class MainActivity extends AppCompatActivity {
 //                    layoutParams.rightMargin = 150;
                 }
                 //左边间距除了第一个都要设置，没间距就贴紧了，很难看
-                layoutParams.leftMargin = 100;
+                layoutParams.leftMargin = 20;
             }
             mLinearLayout.addView(view, layoutParams);
         }
     }
 
-    //这个类主要用来发送消息让viewPager换页面的
-    private static class ImageHandler extends Handler {
+    @Override
+    public void onSuccess(String url, String result, int id) {
+        initAdapter();
+    }
 
-        private boolean check = false;
-        //播放时间，5328通过ViewPager源码计算后会是 500ms 就是半秒
-        private int duration = 5328;
+    @Override
+    public void onFaild(String url, String response, int id) {
 
-        /**
-         * 请求更新显示的View。
-         */
-        protected static final int MSG_UPDATE_IMAGE  = 1;
-        /**
-         * 请求暂停轮播。
-         */
-        protected static final int MSG_KEEP_SILENT   = 2;
-        /**
-         * 请求恢复轮播。
-         */
-        protected static final int MSG_BREAK_SILENT  = 3;
-        /**
-         * 记录最新的页号，当用户手动滑动时需要记录新页号，否则会使轮播的页面出错。
-         * 例如当前如果在第一页，本来准备播放的是第二页，而这时候用户滑动到了末页，
-         * 则应该播放的是第一页，如果继续按照原来的第二页播放，则逻辑上有问题。
-         */
-        protected static final int MSG_PAGE_CHANGED  = 4;
-
-        //轮播间隔时间
-        protected static final long MSG_DELAY = 3000;
-
-        //弱引用对象的存在不会阻止它所指向的对象变被垃圾回收器回收。
-        //使用弱引用避免Handler泄露.这里的泛型参数可以不是Activity，也可以是Fragment等
-        //强引用（Strong Reference）：通常我们通过new来创建一个新对象时返回的引用就是一个强引用，若一个对象通过一系列强引用可到达，它就是强可达的(strongly reachable)，那么它就不被回收
-        //软引用（Soft Reference）：软引用和弱引用的区别在于，若一个对象是弱引用可达，无论当前内存是否充足它都会被回收，而软引用可达的对象在内存不充足时才会被回收，因此软引用要比弱引用“强”一些
-        //虚引用（Phantom Reference）：虚引用是Java中最弱的引用，那么它弱到什么程度呢？它是如此脆弱以至于我们通过虚引用甚至无法获取到被引用的对象，虚引用存在的唯一作用就是当它指向的对象被回收后，虚引用本身会被加入到引用队列中，用作记录它指向的对象已被销毁。
-        private WeakReference<MainActivity> weakReference;
-        private int currentItem = 0;
-
-        protected ImageHandler(WeakReference<MainActivity> wk){
-            weakReference = wk;
-        }
-
-        //设置滚动时间单位是毫秒
-        protected void setDuration(int duration) {
-            this.duration = this.duration / (duration / 500);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            //这样获取的activity就是弱引用的对象，变为null就会被回收
-            MainActivity activity = weakReference.get();
-            if (activity==null){
-                //Activity已经回收，无需再处理UI了
-                return ;
-            }
-            //检查消息队列并移除未发送的消息，这主要是避免在复杂环境下消息出现重复等问题。但第一次就不判断，因为肯定是有的，并只有一个，被移除了就会刚开始不动
-            //检查下如果有message的what==MSG_UPDATE_IMAGE，如果不是第一次，就移除掉这次message
-            //因为没有拖拽动作就会发送一次消息，3秒后又发消息，等于发重复了
-            if (activity.handler.hasMessages(MSG_UPDATE_IMAGE) && check){
-                activity.handler.removeMessages(MSG_UPDATE_IMAGE);
-            } else {
-                //第一次就不移除了，因为是主动要发的
-                check = true;
-            }
-            switch (msg.what) {
-                case MSG_UPDATE_IMAGE:
-                    currentItem++;
-                    activity.mViewPager.mPopulatePending = false;
-                    activity.mViewPager.setCurrentItemInternal(currentItem, !activity.mViewPager.mFirstLayout, false, duration);
-                    //准备下次播放，sendEmptyMessageDelayed表示延迟发送空的message,设置what参数为MSG_UPDATE_IMAGE
-                    activity.handler.sendEmptyMessageDelayed(MSG_UPDATE_IMAGE, MSG_DELAY);
-                    break;
-                case MSG_KEEP_SILENT:
-                    //只要不发送消息就暂停了
-                    break;
-                case MSG_BREAK_SILENT:
-                    activity.handler.sendEmptyMessageDelayed(MSG_UPDATE_IMAGE, MSG_DELAY);
-                    break;
-                case MSG_PAGE_CHANGED:
-                    //记录当前的页号，避免播放的时候页面显示不正确。
-                    currentItem = msg.arg1;
-                    break;
-                default:
-                    break;
-            }
-        }
     }
 
 

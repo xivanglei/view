@@ -2,17 +2,25 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/1 RecyclerView/1 RecyclerView.iml" filepath="$PROJECT_DIR$/1 RecyclerView/1 RecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/12 自定义ViewGroup/12 自定义ViewGroup.iml" filepath="$PROJECT_DIR$/12 自定义ViewGroup/12 自定义ViewGroup.iml" />
       <module fileurl="file://$PROJECT_DIR$/14 WebView基本使用/14 WebView基本使用.iml" filepath="$PROJECT_DIR$/14 WebView基本使用/14 WebView基本使用.iml" />
       <module fileurl="file://$PROJECT_DIR$/15 画图Paint_Canvas_PathBitmap_BitmapFactory/15 画图Paint_Canvas_PathBitmap_BitmapFactory.iml" filepath="$PROJECT_DIR$/15 画图Paint_Canvas_PathBitmap_BitmapFactory/15 画图Paint_Canvas_PathBitmap_BitmapFactory.iml" />
-      <module fileurl="file://$PROJECT_DIR$/3种notification 通知/3种notification 通知.iml" filepath="$PROJECT_DIR$/3种notification 通知/3种notification 通知.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CardView 卡片控件/CardView 卡片控件.iml" filepath="$PROJECT_DIR$/CardView 卡片控件/CardView 卡片控件.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PermissionsDispatcher框架 权限处理/PermissionsDispatcher框架 权限处理.iml" filepath="$PROJECT_DIR$/PermissionsDispatcher框架 权限处理/PermissionsDispatcher框架 权限处理.iml" />
+      <module fileurl="file://$PROJECT_DIR$/16 文件缓存工具类/16 文件缓存工具类.iml" filepath="$PROJECT_DIR$/16 文件缓存工具类/16 文件缓存工具类.iml" />
+      <module fileurl="file://$PROJECT_DIR$/17 网络请求/17 网络请求.iml" filepath="$PROJECT_DIR$/17 网络请求/17 网络请求.iml" />
+      <module fileurl="file://$PROJECT_DIR$/18 RxJava/18 RxJava.iml" filepath="$PROJECT_DIR$/18 RxJava/18 RxJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2 CardView 卡片控件/2 CardView 卡片控件.iml" filepath="$PROJECT_DIR$/2 CardView 卡片控件/2 CardView 卡片控件.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3 3种notification 通知/3 3种notification 通知.iml" filepath="$PROJECT_DIR$/3 3种notification 通知/3 3种notification 通知.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3 3种notification 通知/3种notification 通知.iml" filepath="$PROJECT_DIR$/3 3种notification 通知/3种notification 通知.iml" />
+      <module fileurl="file://$PROJECT_DIR$/4 Toolbar标题栏 和 Palette提取颜色/4 Toolbar标题栏 和 Palette提取颜色.iml" filepath="$PROJECT_DIR$/4 Toolbar标题栏 和 Palette提取颜色/4 Toolbar标题栏 和 Palette提取颜色.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5 PermissionsDispatcher框架 权限处理/5 PermissionsDispatcher框架 权限处理.iml" filepath="$PROJECT_DIR$/5 PermissionsDispatcher框架 权限处理/5 PermissionsDispatcher框架 权限处理.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2 CardView 卡片控件/CardView 卡片控件.iml" filepath="$PROJECT_DIR$/2 CardView 卡片控件/CardView 卡片控件.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5 PermissionsDispatcher框架 权限处理/PermissionsDispatcher框架 权限处理.iml" filepath="$PROJECT_DIR$/5 PermissionsDispatcher框架 权限处理/PermissionsDispatcher框架 权限处理.iml" />
       <module fileurl="file://$PROJECT_DIR$/PopupWindow详解/PopupWindow详解.iml" filepath="$PROJECT_DIR$/PopupWindow详解/PopupWindow详解.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RecyclerView/RecyclerView.iml" filepath="$PROJECT_DIR$/RecyclerView/RecyclerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1 RecyclerView/RecyclerView.iml" filepath="$PROJECT_DIR$/1 RecyclerView/RecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/Snackbar和TextInputLayout和FloatingActionButto/Snackbar和TextInputLayout和FloatingActionButto.iml" filepath="$PROJECT_DIR$/Snackbar和TextInputLayout和FloatingActionButto/Snackbar和TextInputLayout和FloatingActionButto.iml" />
       <module fileurl="file://$PROJECT_DIR$/TabLayout 选项卡动态滑动效果/TabLayout 选项卡动态滑动效果.iml" filepath="$PROJECT_DIR$/TabLayout 选项卡动态滑动效果/TabLayout 选项卡动态滑动效果.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Toolbar标题栏 和 Palette提取颜色/Toolbar标题栏 和 Palette提取颜色.iml" filepath="$PROJECT_DIR$/Toolbar标题栏 和 Palette提取颜色/Toolbar标题栏 和 Palette提取颜色.iml" />
+      <module fileurl="file://$PROJECT_DIR$/4 Toolbar标题栏 和 Palette提取颜色/Toolbar标题栏 和 Palette提取颜色.iml" filepath="$PROJECT_DIR$/4 Toolbar标题栏 和 Palette提取颜色/Toolbar标题栏 和 Palette提取颜色.iml" />
       <module fileurl="file://$PROJECT_DIR$/ViewPager各种功能/ViewPager各种功能.iml" filepath="$PROJECT_DIR$/ViewPager各种功能/ViewPager各种功能.iml" />
       <module fileurl="file://$PROJECT_DIR$/View的滑动/View的滑动.iml" filepath="$PROJECT_DIR$/View的滑动/View的滑动.iml" />
       <module fileurl="file://$PROJECT_DIR$/WheelView的各种组合用法/WheelView的各种组合用法.iml" filepath="$PROJECT_DIR$/WheelView的各种组合用法/WheelView的各种组合用法.iml" />

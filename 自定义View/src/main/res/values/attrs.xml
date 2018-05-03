@@ -9,4 +9,15 @@
         <attr name="title_bg" format="color" />
         <attr name="title_text" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="SwitchIndicator">
+        <attr name="selectorSize" format="dimension"/>
+        <attr name="normalSize" format="dimension"/>
+        <attr name="selectorColor" format="color"/>
+        <attr name="normalColor" format="color"/>
+        <attr name="bgIndicator" format="color"/>
+        <attr name="bgColor" format="color"/>
+        <attr name="openText" format="string" />
+        <attr name="closeText" format="string" />
+    </declare-styleable>
 </resources>

@@ -45,6 +45,14 @@ import android.view.View;
  public void setShadowLayer(float radius, float dx, float dy, int shadowColor):在图形下面设置阴影层，产生阴影效果，radius 为阴影的角度，dx 和 dy 为阴影在 x 轴和 y 轴上的距离，color 为阴影的颜色。
  public void setShader(Shader shader):设置图像效果，使用 Shader 可以绘制出各种渐变效果。
  public Xfermode setXfermode(Xfermode xfermode):设置图形重叠时的处理方式，如合并，取交集或并集，经常用来制作橡皮的擦除效果。
+ 1.PorterDuff.Mode.CLEAR，所绘制不会提交到画布上，也就是不显示内容。2.PorterDuff.Mode.SRC，显示绘制图片的上层图片。
+ 3.PorterDuff.Mode.DST，显示绘制图片下层图片。4.PorterDuff.Mode.SRC_OVER，正常绘制显示，上下层绘制叠盖。
+ 5.PorterDuff.Mode.DST_OVER，上下层都显示，下层居上显示。6.PorterDuff.Mode.SRC_IN，取两层绘制交集。显示上层。
+ 7.PorterDuff.Mode.DST_IN，取两层绘制交集。显示下层。8.PorterDuff.Mode.SRC_OUT，取上层绘制非交集部分。
+ 9.PorterDuff.Mode.DST_OUT，取下层绘制非交集部分。10.PorterDuff.Mode.SRC_ATOP，取下层非交集部分与上层交集部分。
+ 11.PorterDuff.Mode.DST_ATOP，取上层非交集部分与下层交集部分。12.PorterDuff.Mode.XOR，异或：去除两图层交集部分。
+ 13.PorterDuff.Mode.DARKEN，取两图层全部区域，交集部分颜色加深。14.PorterDuff.Mode.LIGHTEN，取两图层全部，点亮交集部分颜色。
+ 15.PorterDuff.Mode.MULTIPLY，取两图层交集部分叠加后颜色。16.PorterDuff.Mode.SCREEN，取两图层全部区域，交集部分变为透明色。
  public void setMaskFilter(MaskFilter maskfilter):设置 MaskFilter ，可以用不同的 MaskFilter 实现滤镜的效果，如滤化，立体等。
  public void setColorFilter(ColorFilter colorfilter):设置颜色过滤器，可以在绘制颜色时实现不用颜色的变换效果。
  public void setPathEffect(PathEffect effect):设置绘制路径的效果，如点画线等。
@@ -231,11 +239,13 @@ public class MyView extends View {
         mPaint.reset();
         mPaint.setColor(Color.BLACK);
         //设置对齐方式，右对齐就是设置的基准点往左偏，一般左对齐
-        mPaint.setTextAlign(Paint.Align.LEFT);
+        mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setTextSize(60);
         //设置抗锯齿
         mPaint.setAntiAlias(true);
-        //从x0，y10开始写，对应字的左下角，也就是只有10个高留给字，不够的都跑到上面去了
-        canvas.drawText("adslfkjsdlfj", 0, 10, mPaint);
+        //先画条线做基准
+        canvas.drawLine(0, 800, 1400, 800, mPaint);
+        //从x0，y10开始写(不是指最底线，是下面很接近底线的基准线)，对应字的左下角，也就是只有10个高留给字，不够的都跑到上面去了
+        canvas.drawText("adslfkjsdlfj", 0, 800, mPaint);
     }
 }

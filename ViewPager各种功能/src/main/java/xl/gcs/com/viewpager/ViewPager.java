@@ -9,6 +9,8 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
@@ -46,6 +48,7 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -3360,6 +3363,94 @@ public class ViewPager extends ViewGroup {
          */
         public float getPageWidth(int position) {
             return 1.f;
+        }
+    }
+
+    //这个类主要用来发送消息让viewPager换页面的
+    public static class ImageHandler extends Handler {
+
+        private boolean check = false;
+        //播放时间，5328通过ViewPager源码计算后会是 500ms 就是半秒
+        private int duration = 5328;
+
+        /**
+         * 请求更新显示的View。
+         */
+        protected static final int MSG_UPDATE_IMAGE  = 1;
+        /**
+         * 请求暂停轮播。
+         */
+        protected static final int MSG_KEEP_SILENT   = 2;
+        /**
+         * 请求恢复轮播。
+         */
+        protected static final int MSG_BREAK_SILENT  = 3;
+        /**
+         * 记录最新的页号，当用户手动滑动时需要记录新页号，否则会使轮播的页面出错。
+         * 例如当前如果在第一页，本来准备播放的是第二页，而这时候用户滑动到了末页，
+         * 则应该播放的是第一页，如果继续按照原来的第二页播放，则逻辑上有问题。
+         */
+        protected static final int MSG_PAGE_CHANGED  = 4;
+
+        //轮播间隔时间
+        protected static final long MSG_DELAY = 3000;
+
+        //弱引用对象的存在不会阻止它所指向的对象变被垃圾回收器回收。
+        //使用弱引用避免Handler泄露.这里的泛型参数可以不是Activity，也可以是Fragment等
+        //强引用（Strong Reference）：通常我们通过new来创建一个新对象时返回的引用就是一个强引用，若一个对象通过一系列强引用可到达，它就是强可达的(strongly reachable)，那么它就不被回收
+        //软引用（Soft Reference）：软引用和弱引用的区别在于，若一个对象是弱引用可达，无论当前内存是否充足它都会被回收，而软引用可达的对象在内存不充足时才会被回收，因此软引用要比弱引用“强”一些
+        //虚引用（Phantom Reference）：虚引用是Java中最弱的引用，那么它弱到什么程度呢？它是如此脆弱以至于我们通过虚引用甚至无法获取到被引用的对象，虚引用存在的唯一作用就是当它指向的对象被回收后，虚引用本身会被加入到引用队列中，用作记录它指向的对象已被销毁。
+        private WeakReference<MainActivity> weakReference;
+        private int currentItem = 0;
+
+        protected ImageHandler(WeakReference<MainActivity> wk){
+            weakReference = wk;
+        }
+
+        //设置滚动时间单位是毫秒
+        protected void setDuration(int duration) {
+            this.duration = this.duration / (duration / 500);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            //这样获取的activity就是弱引用的对象，变为null就会被回收
+            MainActivity activity = weakReference.get();
+            if (activity==null){
+                //Activity已经回收，无需再处理UI了
+                return ;
+            }
+            //检查消息队列并移除未发送的消息，这主要是避免在复杂环境下消息出现重复等问题。但第一次就不判断，因为肯定是有的，并只有一个，被移除了就会刚开始不动
+            //检查下如果有message的what==MSG_UPDATE_IMAGE，如果不是第一次，就移除掉这次message
+            //因为没有拖拽动作就会发送一次消息，3秒后又发消息，等于发重复了
+            if (hasMessages(MSG_UPDATE_IMAGE) && check){
+                removeMessages(MSG_UPDATE_IMAGE);
+            } else {
+                //第一次就不移除了，因为是主动要发的
+                check = true;
+            }
+            switch (msg.what) {
+                case MSG_UPDATE_IMAGE:
+                    currentItem++;
+                    activity.mViewPager.mPopulatePending = false;
+                    activity.mViewPager.setCurrentItemInternal(currentItem, !activity.mViewPager.mFirstLayout, false, duration);
+                    //准备下次播放，sendEmptyMessageDelayed表示延迟发送空的message,设置what参数为MSG_UPDATE_IMAGE
+                    sendEmptyMessageDelayed(MSG_UPDATE_IMAGE, MSG_DELAY);
+                    break;
+                case MSG_KEEP_SILENT:
+                    //只要不发送消息就暂停了
+                    break;
+                case MSG_BREAK_SILENT:
+                    sendEmptyMessageDelayed(MSG_UPDATE_IMAGE, MSG_DELAY);
+                    break;
+                case MSG_PAGE_CHANGED:
+                    //记录当前的页号，避免播放的时候页面显示不正确。
+                    currentItem = msg.arg1;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
