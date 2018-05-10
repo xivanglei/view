@@ -1,4 +1,4 @@
-package xl.gcs.com;
+package xl.gcs.com.httpclientandhttpurlconnection;
 
 import android.text.TextUtils;
 
@@ -55,14 +55,16 @@ public class UrlConnManager {
            if(!TextUtils.isEmpty(mStringBuilder)){
                mStringBuilder.append("&");
            }
+           //URLEncoder.encode是把 参数名按照UTF-8编码，这里其实直接getName,getValue结果也一样
            mStringBuilder.append(URLEncoder.encode(pair.getName(),"UTF-8"));
            mStringBuilder.append("=");
            mStringBuilder.append(URLEncoder.encode(pair.getValue(),"UTF-8"));
        }
+       //字符缓冲区流，输出output
        BufferedWriter writer=new BufferedWriter(new OutputStreamWriter(output,"UTF-8"));
+       //把参数字符写入output
        writer.write(mStringBuilder.toString());
        writer.flush();
        writer.close();
    }
-
 }

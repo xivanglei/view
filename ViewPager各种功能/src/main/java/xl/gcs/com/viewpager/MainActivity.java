@@ -1,5 +1,6 @@
 package xl.gcs.com.viewpager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import xl.gcs.com.viewpager.base.BaseActivity;
 import xl.gcs.com.viewpager.base.BaseHttpActivity;
 
@@ -29,7 +32,7 @@ ViewPager里面的最长滚动时间， MAX_SETTLE_DURATION，可以随便改
 ViewPager需要复制过去，里面改了系统的几个参数
 PagerAdapter如果要无限，就要有不同的设置，而且Fragment估计不行，只是轮播的话正常设置就好
  */
-public class MainActivity extends BaseHttpActivity {
+public class MainActivity extends BaseActivity {
 
     //git 学习中
     @BindView(R.id.main_viewpager)
@@ -46,13 +49,10 @@ public class MainActivity extends BaseHttpActivity {
     //初始化ImageHandler，自定义Handler主要是希望传入MainActivity的弱引用，具体作用下面有解释，为什么用这个，还不清楚
     //如果不用这个弱引用，用系统的Handler就好了
     private ViewPager.ImageHandler handler = new ViewPager.ImageHandler(new WeakReference<MainActivity>(this));
-
-
     @Override
     protected int getLayoutById() {
         return R.layout.activity_main;
     }
-
     @Override
     protected void initData(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= 21) {
@@ -62,21 +62,15 @@ public class MainActivity extends BaseHttpActivity {
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE);  //前面标志是布局全屏包括状态栏，后面标志是，状态栏不取消
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-
-
         }
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
         }
-        getData();
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("page", "0");
-        postHttp("http://interfacev2.56lvyou.com/index.php/Api/Index/canvas", hashMap);
-        mLinearLayout.getChildAt(0).setEnabled(true);
+        initAdapter();
     }
-
     private void initAdapter() {
+        getData();
         mAdapter = new PageAdapter(mImageList);
         mViewPager.setAdapter(mAdapter);
         //加动画，自定义的
@@ -123,6 +117,7 @@ public class MainActivity extends BaseHttpActivity {
         mViewPager.setCurrentItem(Integer.MAX_VALUE / 2);//默认在中间，使用户看不到边界，因为第一页有边界，就不能左移了
         //开始轮播效果
 //        handler.sendEmptyMessageDelayed(ViewPager.ImageHandler.MSG_UPDATE_IMAGE, ViewPager.ImageHandler.MSG_DELAY);
+        mViewPager.setPageTransformer(true, new DepthPageTransformer());
     }
 
     private void getData() {
@@ -152,19 +147,9 @@ public class MainActivity extends BaseHttpActivity {
                 layoutParams.leftMargin = 20;
             }
             mLinearLayout.addView(view, layoutParams);
+            mLinearLayout.getChildAt(0).setEnabled(true);
         }
     }
-
-    @Override
-    public void onSuccess(String url, String result, int id) {
-        initAdapter();
-    }
-
-    @Override
-    public void onFaild(String url, String response, int id) {
-
-    }
-
 
     public class DepthPageTransformer implements ViewPager.PageTransformer {
         private static final float MIN_SCALE = 0.75f;
@@ -182,12 +167,13 @@ public class MainActivity extends BaseHttpActivity {
                 page.setScaleX(1);                                  //缩放比例，x,y都是1，说明正常大小，全部显示，2就是大一倍了，图片显示不下
                 page.setScaleY(1);
             } else if (position <= 1) { // (0,1]
+
                 //页面在由中间页滑动到右侧页面 或者 由右侧页面滑动到中间页
                 // 淡入淡出效果
                 page.setAlpha(1 - position);                        //动画效果，越到中间越浓，最中间就是1-0，就是1了，就是完全显示了
                 // 反方向移动
-                //不用无限轮播功能没关系，如果用了无限轮播，就要把这句注释掉，否则左边显示有问题
-//                page.setTranslationY(pageWidth * -position);        //右边到中间就是*0，相当于不改变位置了，如果最右，就是1，相当于完全上去了
+                //不用无限轮播功能没关系，如果用了无限轮播，就要把这句注释掉，否则左滑显示有问题
+                page.setTranslationY(pageWidth * -position);        //右边到中间就是*0，相当于不改变位置了，如果最右，就是1，相当于完全上去了
                 // 0.75-1比例之间缩放
                 float scaleFactor = MIN_SCALE
                         + (1 - MIN_SCALE) * (1 - position);  //最小比例是0.75，只留0.25的空间让缩放，等于0的时候，刚好加0.25就是不错放，最右就是1-1，就只剩0.75了
@@ -199,5 +185,10 @@ public class MainActivity extends BaseHttpActivity {
             }
 
         }
+    }
+
+    @OnClick(R.id.text1)
+    public void onClick() {
+        startActivity(new Intent(this, BannerActivity.class));
     }
 }

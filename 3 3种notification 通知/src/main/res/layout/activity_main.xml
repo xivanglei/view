@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="private"
                 android:textColor="@drawable/bg_radio_group"
-                android:drawablePadding="40dp"
+                android:drawablePadding="20dp"
                 android:button="@null"
                 android:gravity="center"
                 app:drawableBottom="@mipmap/ic_launcher"

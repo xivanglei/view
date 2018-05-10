@@ -18,13 +18,15 @@ public class CreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-        //interval();
-        //range();
+//        interval();
+//        range();
         repeat();
     }
 
+    //相当于多次range()，也只能Integer,下面结果是0,1,2,0,1,2
     private void repeat() {
         Observable.range(0, 3)
+                //循环次数
                 .repeat(2)
                 .subscribe(new Action1<Integer>() {
                     @Override
@@ -34,9 +36,13 @@ public class CreateActivity extends AppCompatActivity {
                 });
     }
 
+    //可以代替for循环,好像不能打断，下面结果是 0，1，2，3，4
     private void range() {
+        //从 0（不能小于0） 开始发送 5 个数字
         Observable.range(0, 5)
+                //这里必须是Integer类
                 .subscribe(new Action1<Integer>() {
+                    //这里可以自己设定逻辑，像for循环一样
                     @Override
                     public void call(Integer integer) {
                         Log.d(TAG, "range:" + integer.intValue());
@@ -44,8 +50,11 @@ public class CreateActivity extends AppCompatActivity {
                 });
     }
 
+    //定时发射
     private void interval() {
+        //每隔3（参1）秒（参2,也可以分(MINUTES)时（HOURS））
         Observable.interval(3, TimeUnit.SECONDS)
+                //这个方法必须要是 Action1 Long类型，不能String 或Integer类型，并且每次发射都会让long+1
                 .subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long mlong) {

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="xl.gcs.com">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".httpclientandhttpurlconnection.HttpClientAndHttpURLConnectionActivity"/>
+        <activity android:name=".volley.VolleyActivity"/>
+        <activity android:name=".okhttp.OkHttpActivity"/>
+        <activity android:name=".retrofit.RetrofitActivity"/>
     </application>
 
 </manifest>
