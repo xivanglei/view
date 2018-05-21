@@ -20,4 +20,10 @@
         <attr name="openText" format="string" />
         <attr name="closeText" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="CombineChart">
+        <attr name="columnColor" format="color"/>
+        <attr name="pointColor" format="color"/>
+        <attr name="textColor" format="color"/>
+    </declare-styleable>
 </resources>

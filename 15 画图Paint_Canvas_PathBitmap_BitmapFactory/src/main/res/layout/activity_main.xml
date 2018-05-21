@@ -7,24 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <xl.gcs.com.DrawPath
-        android:id="@+id/dv"
+    <xl.gcs.com.MyView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-    <ImageButton
-        android:id="@+id/clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/clear"
-        android:layout_gravity="bottom|right"/>
+    <!--<xl.gcs.com.DrawPath-->
+        <!--android:id="@+id/dv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="变色"
-        android:layout_gravity="bottom|left"/>
+    <!--<ImageButton-->
+        <!--android:id="@+id/clear"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/clear"-->
+        <!--android:layout_gravity="bottom|right"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="变色"-->
+        <!--android:layout_gravity="bottom|left"/>-->
 
 
 </FrameLayout>

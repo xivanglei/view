@@ -4,17 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <xl.gcs.com.viewgroup.HorizontalView
+
+
+
+    <xl.gcs.com.viewgroup.MyViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ListView
             android:id="@+id/lv_one"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+            android:layout_height="match_parent"/>
+
         <ListView
             android:id="@+id/lv_two"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
-    </xl.gcs.com.viewgroup.HorizontalView>
+            android:layout_height="match_parent"/>
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"/>-->
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@mipmap/ic_launcher"/>-->
+
+
+
+    </xl.gcs.com.viewgroup.MyViewPager>
 </RelativeLayout>
 

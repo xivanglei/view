@@ -105,7 +105,7 @@ public class CustomView extends View {
 
                 //使用scrollBy,移动的是子View,所以要先调出getParent()父控件再scrollBy移动，而且，父控件虽然不动，但要假想成是父控件在动
                 //所以里面的参数要用负值-offsetX
-                ((View)getParent()).scrollBy(-offsetX,-offsetY);
+//                ((View)getParent()).scrollBy(-offsetX,-offsetY);
                 break;
         }
 
@@ -127,17 +127,15 @@ public class CustomView extends View {
     }
 
     //系统在绘制View 的时候在draw()方法中调用该方法
-    @Override
-    public void computeScroll() {
-        super.computeScroll();
-        //如果mScroller滚动还未完成,就会根据分段滚动时间算出滚动的举例，再加给参数，如果算出距离已经没有了，说明完成了，会在下次调用返回false
-        if(mScroller.computeScrollOffset()){
-            //返回true就调用方法，让View按照这时段的x,y位置移动
-            ((View) getParent()).scrollTo(mScroller.getCurrX(),mScroller.getCurrY());
-            //再重画，画完又会调用computeScroll()，通过不断的重绘不断的调用computeScroll方法，直到mScroller.computeScrollOffset()为false
-            invalidate();
-        }
-    }
-
-
+//    @Override
+//    public void computeScroll() {
+//        super.computeScroll();
+//        //如果mScroller滚动还未完成,就会根据分段滚动时间算出滚动的举例，再加给参数，如果算出距离已经没有了，说明完成了，会在下次调用返回false
+//        if(mScroller.computeScrollOffset()){
+//            //返回true就调用方法，让View按照这时段的x,y位置移动
+//            ((View) getParent()).scrollTo(mScroller.getCurrX(),mScroller.getCurrY());
+//            //再重画，画完又会调用computeScroll()，通过不断的重绘不断的调用computeScroll方法，直到mScroller.computeScrollOffset()为false
+//            invalidate();
+//        }
+//    }
 }

@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import xl.gcs.com.view.chart.ChartInfoPopupWindow;
+import xl.gcs.com.view.chart.CombineChart;
+import xl.gcs.com.view.chart.OperatorChartBean;
+
 /*
 书上要点：
 Activity.setContentView会调用 getWindow().setContentView(layoutResID); getWindow()会得到PhoneWindow
@@ -20,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private InvalidTextView iv_text;
     private  RectView rv_rect;
     private TitleBar mTitleBar;
+    private List<OperatorChartBean> operatorChartBeans = new ArrayList<>();
+    private ChartInfoPopupWindow mChartInfoPopupWindow;
+    CombineChart combineChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +56,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "点击右键", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        operatorChartBeans.add(new OperatorChartBean(2017, 10, 10f, 10));
+        operatorChartBeans.add(new OperatorChartBean(2017, 11, 20f, 30));
+        operatorChartBeans.add(new OperatorChartBean(2017, 12, 30f, 50));
+        operatorChartBeans.add(new OperatorChartBean(2018, 1, 40f, 70));
+        operatorChartBeans.add(new OperatorChartBean(2018, 2, 50f, 90));
+        operatorChartBeans.add(new OperatorChartBean(2018, 3, 60f, 120));
+        mChartInfoPopupWindow = new ChartInfoPopupWindow(this);
+        combineChart = (CombineChart) findViewById(R.id.chart);
+        combineChart.setChartData(operatorChartBeans);
+        combineChart.setOnTouchListener(new CombineChart.OnInsideTouchListener() {
+            @Override
+            public void show(int index, float x, float y) {
+                mChartInfoPopupWindow.showAtDropDownCenter(combineChart, (int)x, (int)y, operatorChartBeans.get(index));
+            }
+            @Override
+            public void dismiss() {
+                mChartInfoPopupWindow.dismiss();
             }
         });
     }

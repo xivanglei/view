@@ -111,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
 //        animator.start();
 
         //这里是引用AnimatorSet(组合动画)xml的，也必须放在res的animator里面，而且类型要是set
-        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(this,
-                R.animator.property_animator);
-        set.setTarget(mCustomView);
-        set.start();
+//        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(this,
+//                R.animator.property_animator);
+//        set.setTarget(mCustomView);
+//        set.start();
 
 
         //使用View动画使view滑动，相当于播放一次View的动画

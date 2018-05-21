@@ -158,4 +158,17 @@ public class MyRadioGroup extends RadioGroup {
             }
         }
     }
+
+    //查询现在选中的RadioButton id，复写方法，父类返回的id这里都没存入
+    @Override
+    public int getCheckedRadioButtonId() {
+        //如果有选过或初始选中一项就会记录下来，没选过就是null
+        if(mRadioButton != null) {
+            //返回Id
+            return mRadioButton.getId();
+        } else {
+            //没有就返回-1
+            return -1;
+        }
+    }
 }

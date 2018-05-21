@@ -26,13 +26,19 @@
         android:layout_centerHorizontal="true"
         />
 
+    <xl.gcs.com.view.chart.CombineChart
+        android:id="@+id/chart"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        app:pointColor="@android:color/holo_red_dark"/>
     <xl.gcs.com.view.RectView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/rv_rect"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_below="@id/iv_text"
-
         android:layout_centerHorizontal="true"
         android:padding="10dp"
         app:rect_color="@android:color/holo_blue_light"

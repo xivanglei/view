@@ -51,7 +51,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         ViewGroup.LayoutParams lp = holder.tv.getLayoutParams();
         lp.height = mHeights.get(position);
 
-        holder.tv.setLayoutParams(lp);
+        //这里设置多余了，上面的lp.height = mHeights.get(position);已经生效了
+//        holder.tv.setLayoutParams(lp);
         holder.tv.setText(mList.get(position));
 
         if(mOnItemClickListener != null) {

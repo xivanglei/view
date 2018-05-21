@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by xianglei on 2018/4/24.
  */
@@ -46,7 +48,7 @@ public class MyPopupWindow extends PopupWindow {
         this.setContentView(conentView);
         // 设置SelectPicPopupWindow弹出窗体的宽,这里设置半个屏幕的宽度+50像素
         this.setWidth(w / 6 + 50);
-        // 设置SelectPicPopupWindow弹出窗体的高
+        // 设置SelectPicPopupWindow弹出窗体的高，如果设置成WRAP_CONTENT一会就获取不到getHeight了
         this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         // 设置SelectPicPopupWindow弹出窗体可点击
         this.setFocusable(true);
@@ -131,6 +133,7 @@ public class MyPopupWindow extends PopupWindow {
             //获取控件(左上角位置)在整个屏幕内的绝对坐标
             parent.getLocationOnScreen(location);
             this.showAtLocation(parent, 0, location[0] + parent.getWidth() / 2 - this.getWidth() / 2, location[1] + parent.getHeight());
+            Log.d(TAG, "showAtDropDownCenter: " + getWidth());
         }
     }
 

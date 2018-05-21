@@ -59,9 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtn_custom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mMyPopupWindow.showAtDropDownCenter(mBtn_custom);
+//                mChartInfoPopupWindow.showAtDropDownCenter(mBtn_custom, 1, 3);
+                mMyPopupWindow.showAtDropDownCenter(mBtn_custom);
 //                mMyPopupWindow.showAtDropDownLeft(mBtn_custom);
-                mWheelViewPopupWindow.showAtLocation(mBtn_custom, Gravity.BOTTOM, 0, 0);
+//                mWheelViewPopupWindow.showAtLocation(mBtn_custom, Gravity.BOTTOM, 0, 0);
             }
         });
         mContentView.findViewById(R.id.fl_add_sell_house).setOnClickListener(this);

@@ -56,6 +56,8 @@ public class HttpPostRequest {
                 ToastUtils.show("请检查您的网络状况");
                 //执行成功，因为只会成功才会存数据，所以当时只要有存都是成功状态
                 listener.onSuccess(url, asString, id);
+                //读取缓存也算执行成功，下次也能请求
+                yetRequest = false;
                 return;
             }
         }

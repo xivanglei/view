@@ -3,12 +3,16 @@ package xl.gcs.com;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathEffect;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.view.View;
 
 /**
@@ -96,7 +100,17 @@ public class MyView extends View {
     Paint mPaint;
 
     public MyView(Context context) {
-        super(context);
+        this(context, null);
+    }
+
+    public MyView(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public MyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        //画虚线直线需要加这条，关闭硬件加速
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
     @Override
@@ -247,5 +261,13 @@ public class MyView extends View {
         canvas.drawLine(0, 800, 1400, 800, mPaint);
         //从x0，y10开始写(不是指最底线，是下面很接近底线的基准线)，对应字的左下角，也就是只有10个高留给字，不够的都跑到上面去了
         canvas.drawText("adslfkjsdlfj", 0, 800, mPaint);
+
+        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+        p.setStyle(Paint.Style.STROKE);
+        p.setColor(Color.RED);
+        p.setStrokeWidth(10);
+        PathEffect effects = new DashPathEffect(new float[] { 10, 20, 40, 80}, 1);
+        p.setPathEffect(effects);
+        canvas.drawLine(0, 840, 500, 840, p);
     }
 }

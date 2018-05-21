@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private HomeAdapter mHomeAdapter;
     private MyBaseQuickAdapter mMyBaseQuickAdapter;
+    private PagingScrollHelper mPagingScrollHelper;
 
     private List<String> mList = new ArrayList<>();
     private List<Integer> mIntList = new ArrayList<>();
@@ -49,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 Toast.makeText(MainActivity.this, "你点击了" + position + "条",
                         Toast.LENGTH_SHORT).show();
-                mList.add("333");
-                mHomeAdapter.notifyItemRangeChanged(mList.size() - 1, 1);
-                mRecyclerView.scrollToPosition(mList.size() - 1);
             }
 
             @Override
@@ -83,17 +81,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 //        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager
 //                (4, StaggeredGridLayoutManager.VERTICAL);               //瀑布流布局
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 4);           //网络布局
+//        GridLayoutManager layoutManager = new GridLayoutManager(this, 4);           //网络布局
 
         mRecyclerView.setLayoutManager(layoutManager);
         mHomeAdapter = new HomeAdapter(mList, this);
         mRecyclerView.setAdapter(mHomeAdapter);
         //加入自定义分割线
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        mRecyclerView.addItemDecoration(new DividerGridItemDecoration(this));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+//        mRecyclerView.addItemDecoration(new DividerGridItemDecoration(this));
+        //用PagingScrollHelper()几行代码让recyclerView实现 ViewPager的效果
+        mPagingScrollHelper = new PagingScrollHelper();
+        mPagingScrollHelper.setUpRecycleView(mRecyclerView);
 
 
         //下面是自带刷新的RecyclerView,这里也顺便配合BaseQuickAdapter使用

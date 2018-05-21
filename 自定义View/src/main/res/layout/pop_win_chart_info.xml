@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/combined_shape"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_telephone_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="182.02元话费"
+            android:textSize="13sp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_telephone_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="204次通话"
+            android:textSize="13sp"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+</LinearLayout>
