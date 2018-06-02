@@ -12,6 +12,8 @@
       <module fileurl="file://$PROJECT_DIR$/19 设计模式/19 设计模式.iml" filepath="$PROJECT_DIR$/19 设计模式/19 设计模式.iml" />
       <module fileurl="file://$PROJECT_DIR$/2 CardView 卡片控件/2 CardView 卡片控件.iml" filepath="$PROJECT_DIR$/2 CardView 卡片控件/2 CardView 卡片控件.iml" />
       <module fileurl="file://$PROJECT_DIR$/20 EventBus与Otto/20 EventBus与Otto.iml" filepath="$PROJECT_DIR$/20 EventBus与Otto/20 EventBus与Otto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/21 Glide/21 Glide.iml" filepath="$PROJECT_DIR$/21 Glide/21 Glide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/22 注解与依赖注入框架，Dagger2/22 注解与依赖注入框架，Dagger2.iml" filepath="$PROJECT_DIR$/22 注解与依赖注入框架，Dagger2/22 注解与依赖注入框架，Dagger2.iml" />
       <module fileurl="file://$PROJECT_DIR$/3 3种notification 通知/3 3种notification 通知.iml" filepath="$PROJECT_DIR$/3 3种notification 通知/3 3种notification 通知.iml" />
       <module fileurl="file://$PROJECT_DIR$/3 3种notification 通知/3种notification 通知.iml" filepath="$PROJECT_DIR$/3 3种notification 通知/3种notification 通知.iml" />
       <module fileurl="file://$PROJECT_DIR$/4 Toolbar标题栏 和 Palette提取颜色/4 Toolbar标题栏 和 Palette提取颜色.iml" filepath="$PROJECT_DIR$/4 Toolbar标题栏 和 Palette提取颜色/4 Toolbar标题栏 和 Palette提取颜色.iml" />
@@ -26,8 +28,11 @@
       <module fileurl="file://$PROJECT_DIR$/ViewPager各种功能/ViewPager各种功能.iml" filepath="$PROJECT_DIR$/ViewPager各种功能/ViewPager各种功能.iml" />
       <module fileurl="file://$PROJECT_DIR$/View的滑动/View的滑动.iml" filepath="$PROJECT_DIR$/View的滑动/View的滑动.iml" />
       <module fileurl="file://$PROJECT_DIR$/WheelView的各种组合用法/WheelView的各种组合用法.iml" filepath="$PROJECT_DIR$/WheelView的各种组合用法/WheelView的各种组合用法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/annotations/annotations.iml" filepath="$PROJECT_DIR$/annotations/annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/processor/processor.iml" filepath="$PROJECT_DIR$/processor/processor.iml" />
       <module fileurl="file://$PROJECT_DIR$/wangshu.iml" filepath="$PROJECT_DIR$/wangshu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/应用架构设计/应用架构设计.iml" filepath="$PROJECT_DIR$/应用架构设计/应用架构设计.iml" />
       <module fileurl="file://$PROJECT_DIR$/自定义View/自定义View.iml" filepath="$PROJECT_DIR$/自定义View/自定义View.iml" />
     </modules>
   </component>

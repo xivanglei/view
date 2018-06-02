@@ -72,15 +72,15 @@ public class MyViewPager extends ViewGroup {
                 int deltaX = x - lastInterceptX;
                 int deltaY = y - lastInterceptY;
                 if(orientation == VERTICAL) {
-                    //如果垂直方向距离比水平方向长  MOVE中返回true一次,后续的MOVE和UP都不会收到此请求
-                    if (Math.abs(deltaY) - Math.abs(deltaX) > 0) {
+                    //如果垂直方向距离比水平方向长  MOVE中返回true一次,后续的MOVE和UP都不会收到此请求,右边加!的括号里意思是，只要不是上边上滑，或下边下滑，都拦，拦下来让父层滑，是的话，父层反正划不动，就让子层滑
+                    if (Math.abs(deltaY) - Math.abs(deltaX) > 0 && !((getScrollY() <= 0 && deltaY > 0) || (getScrollY() >= (childCount - 1) * childHeight && deltaY < 0))) {
                         intercept = true;
                     } else {
                         intercept = false;
                     }
                 } else {
-                    //如果水平方向距离比垂直方向长  MOVE中返回true一次,后续的MOVE和UP都不会收到此请求
-                    if (Math.abs(deltaX) - Math.abs(deltaY) > 0) {
+                    //如果水平方向距离比垂直方向长  MOVE中返回true一次,后续的MOVE和UP都不会收到此请求，右边加!的括号里意思是，只要不是左边左滑，或右边右滑，都拦，拦下来让父层滑，是的话，父层反正划不动，就让子层滑
+                    if (Math.abs(deltaX) - Math.abs(deltaY) > 0 && !((getScrollX() <= 0 && deltaX > 0) || (getScrollX() >= (childCount - 1) * childWidth && deltaX < 0))) {
                         intercept = true;
                     } else {
                         intercept = false;
@@ -118,21 +118,22 @@ public class MyViewPager extends ViewGroup {
                 if(orientation == VERTICAL) {
                     //跟随手指滑动
                     int deltaY = y - lastY;
-                    //要么滚动值是0的时候页面能上滑，要么大于0同时小于最下边也让滑，要么最下边的时候让下滑
-                    if ((getScrollY() == 0 && deltaY < 0) || (getScrollY() > 0 && getScrollY() < (childCount - 1) * childHeight)
-                            || (getScrollY() == (childCount - 1) * childHeight && deltaY > 0)) {
-                        //在现有偏移量的基础上再加上x,y的距离，-deltaX就是时刻获取的移动的距离，这里不能用scrollTo，用scrollTo就是移动到这个点了
-                        scrollBy(0, -deltaY);
+                    //如果滑动会超界
+                    if(getScrollY() - deltaY < 0 || getScrollY() - deltaY > (childCount - 1) * childHeight) {
+                        //如果滑动超一半，就说明要滑到下边界（因为移动是慢慢分步移的，不可能一下移动超过一半距离），移动距离就等于下边界减一个面宽度减现在偏移量，再给负值，下面再会负回来的
+                        deltaY = getScrollY() > getHeight() / 2 ? -((childCount - 1) * childHeight - getScrollY()) : 0 + getScrollY();
                     }
+                        scrollBy(0, -deltaY);
                 } else {
                     //跟随手指滑动
                     int deltaX = x - lastX;
-                    //要么滚动值是0的时候页面能左滑，要么大于0同时小于最右边也让滑，要么最右边的时候让右滑
-                    if ((getScrollX() == 0 && deltaX < 0) || (getScrollX() > 0 && getScrollX() < (childCount - 1) * childWidth)
-                            || (getScrollX() == (childCount - 1) * childWidth && deltaX > 0)) {
-                        //在现有偏移量的基础上再加上x,y的距离，-deltaX就是时刻获取的移动的距离，这里不能用scrollTo，用scrollTo就是移动到这个点了
-                        scrollBy(-deltaX, 0);
+                    //如果滑动会超界
+                    if(getScrollX() - deltaX < 0 || getScrollX() - deltaX > (childCount - 1) * childWidth) {
+                        //如果滑动超一半，就说明要滑到右边界（因为移动是慢慢分步移的，不可能一下移动超过一半距离），移动距离就等于右边界减一个面宽度减现在偏移量，再给负值，下面再会负回来的
+                        deltaX = getScrollX() > getWidth() / 2 ? -((childCount - 1) * childWidth - getScrollX()) : 0 + getScrollX();
                     }
+                    //在现有偏移量的基础上再加上x,y的距离，-deltaX就是时刻获取的移动的距离，这里不能用scrollTo，用scrollTo就是移动到这个点了
+                    scrollBy(-deltaX, 0);
                 }
                 break;
             //释放手指以后开始自动滑动到目标位置

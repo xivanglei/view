@@ -66,7 +66,13 @@ public class UtilityActivity extends AppCompatActivity {
                 subscriber.onCompleted();
             }
         });
-        //subscribeOn用于指定Observable自身在哪个线程上运行，这里是新开一条线程，observeOn用于指定观察者Observer在哪个线程运行，这里是主线程，一般都是主线程，方便修改UI
+        //subscribeOn用于指定被观察者Observable自身在哪个线程上运行，这里是新开一条线程，observeOn用于指定观察者Observer在哪个线程运行，这里是主线程，一般都是主线程，方便修改UI
+//        Schedulers.immediate()  直接在当前线程运行，是timeout、timeInterval、timestamp操作符的默认调度器
+//        Schedulers.newThread()    总是启用新线程，在新线程中执行操作
+//        Schedulers.io()   通常用于读写文件，读写数据库，网络信息交互等，行为模式和newThread()差不多，区别在于io()内部用一个无数量上限的线程池，并可以重用空闲的线程，所以更有效率
+//        Schedulers.computation()  计算所使用的Scheduler 不要把i/o操作放在这线程中，否则i/o操作等待的时间会浪费cpu，他是buffer、debounce、delay、interval、sample和skip的默认调度器
+//        Schedulers.trampoline()   在当前线程的任务中，不用立即执行任务时，可以用trampoline()将它入队，这个调度器就会按序运行队列中的每一个任务，repeat和retry都是用这个
+//        AndroidSchedulers.mainThread()    RxAndroid库中提供的Scheduler,它指定的操作在主线程中运行。
         obs.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {

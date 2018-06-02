@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="xl.gcs.com.myapplication.butterknife.ButterKnifeActivity">
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hello world"/>
+
+    <Button
+        android:id="@+id/bt_button1"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:textAllCaps="false"
+        />
+    <Button
+        android:id="@+id/bt_button2"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/bt_button3"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:textAllCaps="false"
+        />
+
+
+    <!--父控件加入android:focusable="true" 与android:focusableInTouchMode="true"就能不自动获取焦点-->
+    <!--imeOptions表示右下角的显示，和行为模式，actionDone是完成，点击后光标保持在原来的输入框上，并且软键盘关闭-->
+    <!--EditorInfo.IME_ACTION_DONE只有对android:singleLine="true"的EditText有效,有些输入法不支持它，比如搜狐-->
+    <!--android:imeOptions="actionSend" 软键盘下方变成“发送”，点击后光标移动下一个EditText-->
+    <!--java里面还可以更改，具体看java-->
+    <EditText
+        android:id="@+id/et_edit_text"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="1"
+        android:singleLine="true"
+        android:inputType="text"
+        android:maxLength="8"
+        android:textColor="#000000"
+        android:imeOptions="actionDone"
+        android:background="@null"
+        />
+    <ListView
+        android:id="@+id/lv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+
+
+    <fragment
+        android:name="xl.gcs.com.myapplication.butterknife.MoonFragment"
+        android:id="@+id/fragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+</LinearLayout>

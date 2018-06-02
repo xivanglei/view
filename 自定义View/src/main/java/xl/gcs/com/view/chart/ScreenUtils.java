@@ -14,6 +14,14 @@ public class ScreenUtils {
     private static int screenW;
     private static int screenH;
     private static float screenDensity;
+    private static float screenDensityDpi;
+
+    public static float getScreenDensityDpi(Context context) {
+        if(screenDensityDpi == 0) {
+            initScreen(context);
+        }
+        return screenDensityDpi;
+    }
 
     public static int getScreenW(Context context) {
         if (screenW == 0) {
@@ -40,7 +48,14 @@ public class ScreenUtils {
         DisplayMetrics metric = context.getResources().getDisplayMetrics();
         screenW = metric.widthPixels;
         screenH = metric.heightPixels;
-        screenDensity = metric.density;
+        if (screenW > screenH) {
+            int t = screenH;
+            screenH = screenW;
+            screenW = t;
+        }
+        //一般的屏幕分辨率为1024x600，density为1.5，densityDpi为240
+        screenDensity = metric.density;         //屏幕密度，和像素px无关
+        screenDensityDpi = metric.densityDpi;   //没英寸距离具有多少个像素点
     }
 
     /**

@@ -35,11 +35,14 @@ public class OkhttpActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        postAsynHttp("59.108.54.37");
+        postAsyncHttp("59.108.54.37");
     }
 
-    private void postAsynHttp(String size) {
-        getObservable(size).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<String>() {
+    private void postAsyncHttp(String size) {
+        //先获取下面的被观察者，里面会发送结果出来
+        getObservable(size)
+                //指定被观察者再io线程上运行，观察者在主线程中执行，然后指定观察者
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
                 Log.d(TAG, "onCompleted");
@@ -57,33 +60,42 @@ public class OkhttpActivity extends AppCompatActivity {
     }
 
     private Observable<String> getObservable(final String ip) {
+        //创建String类型的被观察者
         Observable observable = Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(final Subscriber<? super String> subscriber) {
+                //请求客户端
                 mOkHttpClient = new OkHttpClient();
+                //post请求的参数类
                 RequestBody formBody = new FormBody.Builder()
                         .add("ip", ip)
                         .build();
+                //请求类
                 Request request = new Request.Builder()
                         .url("http://ip.taobao.com/service/getIpInfo.php")
                         .post(formBody)
                         .build();
+                //加入请求，准备发送
                 Call call = mOkHttpClient.newCall(request);
+                //发送请求，加入回调
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
+                        //通过Observable发送错误
                         subscriber.onError(new Exception("error"));
                     }
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         String str = response.body().string();
+                        //通过Observable发送数据，并执行完毕回调
                         subscriber.onNext(str);
                         subscriber.onCompleted();
                     }
                 });
             }
         });
+        //返回被观察者
         return observable;
     }
 

@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.functions.Action0;
 import rx.functions.Action1;
 
@@ -81,7 +82,20 @@ public class BasicRxJava {
         //开始订阅，相当于观察者开始查看数据会依次从onStart(),onNext(),onCompleted()开始运行,括号里的参数作用是，如果没有指明添加哪个观察者数据，就让括号里的观察者订阅
         mObservable.subscribe(mSubscriber);
 
-
+        //Observable.subscribe会返回Subscription接口，里面有两个方法，isUnsubscribed是否已经取消，unsubscribe取消订阅
+        Subscription subscription = Observable.just("Hello subscription")
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        Log.d(TAG, "call: " + s);
+                    }
+                });
+        //打印是否已经取消订阅，这里返回false
+        Log.d(TAG, "basicComeTrue: " + subscription.isUnsubscribed());
+        //取消订阅
+        subscription.unsubscribe();
+        //这里会返回true,因为已经被取消了
+        Log.d(TAG, "basicComeTrue: " + subscription.isUnsubscribed());
 
 
 

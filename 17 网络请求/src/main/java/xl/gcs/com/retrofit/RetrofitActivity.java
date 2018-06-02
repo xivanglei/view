@@ -56,7 +56,7 @@ public class RetrofitActivity extends AppCompatActivity {
                 .build();
         //获取到之前定义的get接口
         IpService ipService = retrofit.create(IpService.class);
-        //得到Call对象
+        //得到Call对象，可以通过call.Cancel()取消
         Call<IpModel> call = ipService.getIpMsg();
         //加入请求队列，回调Callback是运行在UI线程的，就不用handler了，如果想同步请求就call.execute(),中断网络请求就call.cancel()
         call.enqueue(new Callback<IpModel>() {

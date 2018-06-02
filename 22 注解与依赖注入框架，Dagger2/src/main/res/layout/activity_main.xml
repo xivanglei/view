@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="xl.gcs.com.myapplication.MainActivity">
+
+    <Button
+        android:id="@+id/bt_annotation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注解"/>
+
+    <Button
+        android:id="@+id/bt_butter_knife"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ButterKnife"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/bt_dagger2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dagger2"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+
+</LinearLayout>

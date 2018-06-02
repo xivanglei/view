@@ -33,6 +33,8 @@ public class RxBusFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //刚刚已经通过RxBus.subject发送数据了，这里再过滤下，相当于不管之前有多少类发送了数据，这里只接受MessageEvent类型的消息
+        //指定新的Action1(观察者)来处理数据
         subscription= RxBus.getInstance().toObservable(MessageEvent.class).subscribe(new Action1<MessageEvent>() {
             @Override
             public void call(MessageEvent messageEvent) {
@@ -46,6 +48,7 @@ public class RxBusFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        //如果销毁了还没完成或取消，就取消掉
         if(subscription!=null&&!subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }

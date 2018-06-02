@@ -1,6 +1,7 @@
 package xl.gcs.com.rxjava;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -65,52 +66,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //基本使用
             case R.id.bt_basic_come_true:
                 BasicRxJava.basicComeTrue();
                 break;
+                //创建操作符
             case R.id.bt_create:
                 Intent intent = new Intent(MainActivity.this, CreateActivity.class);
                 startActivity(intent);
                 break;
+                //变换操作符
             case R.id.bt_transform:
                 Intent transformIntent = new Intent(MainActivity.this, TransformActivity.class);
                 startActivity(transformIntent);
                 break;
-
+                //过滤操作符
             case R.id.bt_filter:
                 Intent filterIntent = new Intent(MainActivity.this, FilterActivity.class);
                 startActivity(filterIntent);
                 break;
+                //组合操作符
             case R.id.bt_combine:
                 Intent combineIntent = new Intent(MainActivity.this, CombineActivity.class);
                 startActivity(combineIntent);
-
                 break;
+            //辅助操作符,线程也在这里
             case R.id.bt_utility:
                 Intent utilityIntent = new Intent(MainActivity.this, UtilityActivity.class);
                 startActivity(utilityIntent);
                 break;
+                //错误操作符
             case R.id.bt_error:
                 Intent errorIntent = new Intent(MainActivity.this, ErrorActivity.class);
                 startActivity(errorIntent);
                 break;
+                //条件和布尔操作符
             case R.id.bt_conditional:
                 Intent conditionalIntent = new Intent(MainActivity.this, ConditionalActivity.class);
                 startActivity(conditionalIntent);
                 break;
+                //转换操作符
             case R.id.bt_conversion:
                 Intent conversionIntent = new Intent(MainActivity.this, ConversionActivity.class);
                 startActivity(conversionIntent);
                 break;
-
+                //RxJava结合OkHttp访问网络
             case R.id.bt_okhttp:
                 Intent okhttpIntent = new Intent(MainActivity.this, OkhttpActivity.class);
                 startActivity(okhttpIntent);
                 break;
+                //RxJava结合Retrofit访问网络
             case R.id.bt_retrofit:
                 Intent retrofitIntent = new Intent(MainActivity.this, RetrofitActivity.class);
                 startActivity(retrofitIntent);
                 break;
+                //用RxJava实现RxBus
             case R.id.bt_rxbus:
                 Intent rxbusIntent = new Intent(MainActivity.this, RxBusActivity.class);
                 startActivity(rxbusIntent);

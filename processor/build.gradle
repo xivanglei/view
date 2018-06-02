@@ -1,0 +1,12 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //依赖下annotations
+    implementation project(':annotations')
+    //谷歌开源的AutoService，用来帮助开发者生成META_INF/services/javax.annotation.processing.Processor
+    implementation 'com.google.auto.service:auto-service:1.0-rc2'
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

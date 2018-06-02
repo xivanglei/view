@@ -18,6 +18,7 @@ public class RxBusActivity extends AppCompatActivity {
         bt_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //通过RxBus里的subject发送事件,由于是单例，所以是同一个subject
                 RxBus.getInstance().post(new MessageEvent("用RxJava实现RxBus"));
             }
         });

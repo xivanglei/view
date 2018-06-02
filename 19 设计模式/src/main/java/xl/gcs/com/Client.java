@@ -60,11 +60,18 @@ public class Client {
         IShop liuwangshu2 = new LiuWangShu();
         //创建动态代理
         DynamicPurchasing dynamicPurchasing = new DynamicPurchasing(liuwangshu2);
-        //创建LiuWangShu的ClassLoader
+        //创建LiuWangShu的ClassLoader,程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，
+        // 通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中的，从而只有class文件被载入到了内存之后，
+        // 才能被其它class所引用。所以ClassLoader就是用来动态加载class文件到内存当中用的
         ClassLoader loader = liuwangshu2.getClass().getClassLoader();
-        //动态创建代理类
+        //动态创建代理类，Proxy这个类的作用就是用来动态创建一个代理对象的类，它提供了许多的方法，但是我们用的最多的就是 newProxyInstance 这个方法：
+        //这个方法的作用就是得到一个动态的代理对象，其接收三个参数
+        // loader:一个ClassLoader对象，定义了由哪个ClassLoader对象来对生成的代理对象进行加载
+//        interfaces:一个Interface对象的数组，表示的是我将要给我需要代理的对象提供一组什么接口，如果我提供了一组接口给它，
+//        那么这个代理对象就宣称实现了该接口(多态)，这样我就能调用这组接口中的方法了
+//        h:　　一个InvocationHandler对象，表示的是当我这个动态代理对象在调用方法的时候，会关联到哪一个InvocationHandler对象上
         IShop purchasing2 = (IShop) Proxy.newProxyInstance(loader, new Class[] {IShop.class}, dynamicPurchasing);
-        purchasing.buy();
+        purchasing2.buy();
 
         //调用装饰模式
         YangGuo yangGuo = new YangGuo();
